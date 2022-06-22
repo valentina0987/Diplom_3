@@ -6,6 +6,8 @@ import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.enabled;
 
+//Протестируй функциональность в Google Chrome и Яндекс.Браузере. Подключи Allure-отчёт.!!!!!!!!!
+
 public class AccountPage {
     public static final String PROFILE_PAGE_URL = "https://stellarburgers.nomoreparties.site/account/profile";
 
