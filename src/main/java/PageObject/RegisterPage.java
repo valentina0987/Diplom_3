@@ -14,10 +14,6 @@ public class RegisterPage {
     public final String PASSWORD = "ABCDEF";
     public final String INCORRECT_PASSWORD = "ABCDE";
 
-    //@FindBy(how = How.XPATH, using = ".//button[text()='Зарегистрироваться']")
-    //private SelenideElement startRegistration;
-    // не пойму, используется она все таки где-то или нет
-
     @FindBy(how = How.XPATH, using = ".//label[text() = 'Имя']/../input")
     private SelenideElement nameField;
 

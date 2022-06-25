@@ -10,11 +10,9 @@ public class MainPage {
 
     public static final String MAIN_PAGE_URL = "https://stellarburgers.nomoreparties.site/";
 
-    // кнопка "Личный кабинет"
     @FindBy(how = How.XPATH, using = "//nav/a[@class='AppHeader_header__link__3D_hX']")
     private SelenideElement personalAccountButton;
 
-    // кнопка "Войти в аккаунт"
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Войти в аккаунт')]")
     private SelenideElement makeOrderButton;
 
