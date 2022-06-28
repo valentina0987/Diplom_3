@@ -1,10 +1,11 @@
-package PageObject;
+package pageObject;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.visible;
 
 public class MainPage {
 
@@ -70,9 +71,10 @@ public class MainPage {
     }
 
     @Step("Переход к разделу 'Соусы'")
-    public void checkSauces() {
+    public void getSauces() {
         allSauces.click();
     }
+
 
     @Step("Переход к разделу 'Начинки'")
     public void checkFillings() {
@@ -80,7 +82,7 @@ public class MainPage {
     }
 
     @Step("Проверяем, что 'Флюоресцентная булка' отображается")
-    public boolean checkFluorescentBun() {
+    public boolean isDisplayedFluorescentBun() {
         return fluorescentBun.isDisplayed();
     }
 
@@ -91,7 +93,8 @@ public class MainPage {
 
     @Step("Проверяем, что начинка 'Мясо бессмертных моллюсков Protostomia' отображается")
     public boolean checkProtostomiaMeat() {
-        return protostomiaMeat.isDisplayed();
+        protostomiaMeat.shouldBe(visible);
+        return true;
     }
 
     @Step("Проверяем, что кнопка 'Оформить заказ'отображается")

@@ -1,7 +1,7 @@
-import PageObject.LoginPage;
-import PageObject.MainPage;
-import PageObject.PasswordRecoveryForm;
-import PageObject.RegisterPage;
+import pageObject.LoginPage;
+import pageObject.MainPage;
+import pageObject.PasswordRecoveryForm;
+import pageObject.RegisterPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
@@ -11,18 +11,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static PageObject.MainPage.MAIN_PAGE_URL;
-import static PageObject.PasswordRecoveryForm.PASSWORD_RECOVERY_URL;
-import static PageObject.RegisterPage.REGISTER_PAGE_URL;
+import static pageObject.MainPage.MAIN_PAGE_URL;
+import static pageObject.PasswordRecoveryForm.PASSWORD_RECOVERY_URL;
+import static pageObject.RegisterPage.REGISTER_PAGE_URL;
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
-    MainPage mainPage;
-    LoginPage loginPage;
-    RegisterPage registerPage;
 
     @Before
     public void setUp() {
@@ -41,7 +38,7 @@ public class LoginTest {
     @DisplayName("Checking the login using the 'Log in to account' button on the main page")
     @Description("Проверка входа по кнопке «Войти в аккаунт» на главной странице")
     public void checkLoginFromMainPageThroughLoginButton() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughLoginButton();
         LoginPage login = page(LoginPage.class);
         login.sendEmailAndPassword(login.EMAIL, login.PASSWORD);
@@ -54,7 +51,7 @@ public class LoginTest {
     @DisplayName("Checking the login using the 'Personal account' button on the main page")
     @Description("Проверка входа через кнопку «Личный кабинет»")
     public void checkLoginFromMainPageThroughPersonalAccount() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughPersonalAccount();
         LoginPage login = page(LoginPage.class);
         login.sendEmailAndPassword(login.EMAIL, login.PASSWORD);

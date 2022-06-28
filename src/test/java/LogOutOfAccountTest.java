@@ -1,6 +1,6 @@
-import PageObject.AccountPage;
-import PageObject.LoginPage;
-import PageObject.MainPage;
+import pageObject.AccountPage;
+import pageObject.LoginPage;
+import pageObject.MainPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
@@ -12,11 +12,9 @@ import org.junit.Test;
 
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.*;
+import static pageObject.MainPage.MAIN_PAGE_URL;
 
 public class LogOutOfAccountTest {
-    AccountPage accountPage;
-    LoginPage loginPage;
-    MainPage mainPage;
 
     @Before
     public void setUp() {
@@ -34,7 +32,7 @@ public class LogOutOfAccountTest {
     @DisplayName("Checking the correct exit by clicking the 'Exit' button in your personal account")
     @Description("Проверка корректного выхода по кнопке 'Выйти' в личном кабинете")
     public void checkExitOutOfYourAccount() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughLoginButton();
         LoginPage login = page(LoginPage.class);
         login.sendEmailAndPassword(login.EMAIL, login.PASSWORD);

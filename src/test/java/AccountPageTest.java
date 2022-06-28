@@ -1,6 +1,6 @@
-import PageObject.AccountPage;
-import PageObject.LoginPage;
-import PageObject.MainPage;
+import pageObject.AccountPage;
+import pageObject.LoginPage;
+import pageObject.MainPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
@@ -10,16 +10,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static PageObject.LoginPage.LOGIN_PAGE_URL;
+import static pageObject.LoginPage.LOGIN_PAGE_URL;
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
+import static pageObject.MainPage.MAIN_PAGE_URL;
 
 public class AccountPageTest {
-    AccountPage accountPage;
-    LoginPage loginPage;
-    MainPage mainPage;
 
     @Before
     public void setUp() {
@@ -37,7 +35,7 @@ public class AccountPageTest {
     @DisplayName("Transfer to your personal account")
     @Description("Переход по клику на 'Личный кабинет'")
     public void switchToPersonalAccount() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughLoginButton();
         LoginPage loginPage = page(LoginPage.class);
         assertEquals("Клик по кнопке 'Личный кабинет' не осуществлен",
@@ -48,13 +46,12 @@ public class AccountPageTest {
     @DisplayName("Switching from personal account to the constructor")
     @Description("Переход из личного кабинета по клику на 'Конструктор'")
     public void switchToConstructorFromPersonalAccount() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughLoginButton();
         LoginPage login = page(LoginPage.class);
         login.sendEmailAndPassword(login.EMAIL, login.PASSWORD);
         login.waitingForLogin();
         mainPage.loginThroughPersonalAccount();
-        AccountPage accountPage = page(AccountPage.class);
         mainPage.clickToConstructor();
         Assert.assertTrue("Переход из личного кабинета в'Конструктор' не осуществлен", mainPage.checkAssembleTheBurger());
     }
@@ -63,13 +60,12 @@ public class AccountPageTest {
     @DisplayName("Switching from personal account to the logo Stellar Burger")
     @Description("Переход из личного кабинета по клику на логотип 'Stellar Burger'")
     public void switchToLogoStellarBurgerFromPersonalAccount() {
-        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/", MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.loginThroughLoginButton();
         LoginPage login = page(LoginPage.class);
         login.sendEmailAndPassword(login.EMAIL, login.PASSWORD);
         login.waitingForLogin();
         mainPage.loginThroughPersonalAccount();
-        AccountPage accountPage = page(AccountPage.class);
         mainPage.clickLogo();
         Assert.assertTrue("Клик из личного кабинета по логотипу 'Stellar Burger' не осуществлен", mainPage.checkLogo());
     }

@@ -1,4 +1,4 @@
-import PageObject.RegisterPage;
+import pageObject.RegisterPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import static PageObject.RegisterPage.REGISTER_PAGE_URL;
+import static pageObject.RegisterPage.REGISTER_PAGE_URL;
 
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -34,8 +34,7 @@ public class RegisterTest {
         RegisterPage registerPage = open(REGISTER_PAGE_URL, RegisterPage.class);
         registerPage.newUserRegistration(registerPage.NAME, registerPage.EMAIL, registerPage.PASSWORD);
         registerPage.waitAfterRegistration();
-        boolean isDisplayed = registerPage.checkEntryButton();
-        Assert.assertTrue("После успешной регистрации пользователь должен быть перенаправлен на страницу входа в систему", isDisplayed);
+        Assert.assertTrue("После успешной регистрации пользователь должен быть перенаправлен на страницу входа в систему", registerPage.checkEntryButton());
     }
 
     @Test

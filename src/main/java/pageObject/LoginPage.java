@@ -1,4 +1,4 @@
-package PageObject;
+package pageObject;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -28,7 +28,7 @@ public class LoginPage {
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Восстановить пароль')]")
     private SelenideElement recoverPasswordButton;
 
-    @FindBy(how = How.XPATH, using = "//form[@class='Auth_form__3qKeq mb-20']")
+    @FindBy(how = How.XPATH, using = "//form")
     private SelenideElement authForm;
 
 
