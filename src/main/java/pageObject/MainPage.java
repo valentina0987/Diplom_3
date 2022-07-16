@@ -4,8 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 
 public class MainPage {
 
@@ -23,29 +22,29 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//h1[contains(text(), 'Соберите бургер')]")
     private SelenideElement assembleTheBurger;
 
-    @FindBy(how = How.XPATH, using = ".//h2[contains(text(), 'Булки')]")
+    @FindBy(how = How.XPATH, using = "//div//span[text()='Булки']")
     private SelenideElement allBuns;
 
-    @FindBy(how = How.XPATH, using = ".//p[text()='Флюоресцентная булка R2-D3']")
-    private SelenideElement fluorescentBun;
-
-    @FindBy(how = How.XPATH, using = ".//span[text()='Соусы']")
+    @FindBy(how = How.XPATH, using = "//div//span[text()='Соусы']")
     private SelenideElement allSauces;
 
-    @FindBy(how = How.XPATH, using = ".//p[text()='Соус Spicy-X']")
-    private SelenideElement spicyX;
-
-    @FindBy(how = How.XPATH, using = ".//span[text()='Начинки']")
+    @FindBy(how = How.XPATH, using = "//div//span[text()='Начинки']")
     private SelenideElement allFillings;
-
-    @FindBy(how = How.XPATH, using = ".//p[text()='Мясо бессмертных моллюсков Protostomia']")
-    private SelenideElement protostomiaMeat;
 
     @FindBy(how = How.XPATH, using = "//div[@class='AppHeader_header__logo__2D0X2']")
     private SelenideElement logo;
 
     @FindBy(how = How.XPATH, using = "//button[contains(text(),'Оформить заказ')]")
     private SelenideElement placeAnOrder;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'tab_tab_type_current__2BEPc')]//span[contains(text(),'Булки')]")
+    private SelenideElement activeBunSection;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'tab_tab_type_current__2BEPc')]//span[contains(text(),'Соусы')]")
+    private SelenideElement activeSaucesSection;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'tab_tab_type_current__2BEPc')]//span[contains(text(),'Начинки')]")
+    private SelenideElement activeFillingsSection;
 
     @Step("Клик на кнопку 'Личный кабинет'")
     public void loginThroughPersonalAccount() {
@@ -71,30 +70,28 @@ public class MainPage {
     }
 
     @Step("Переход к разделу 'Соусы'")
-    public void getSauces() {
+    public void checkSauces() {
         allSauces.click();
     }
-
 
     @Step("Переход к разделу 'Начинки'")
     public void checkFillings() {
         allFillings.click();
     }
 
-    @Step("Проверяем, что 'Флюоресцентная булка' отображается")
-    public boolean isDisplayedFluorescentBun() {
-        return fluorescentBun.isDisplayed();
+    @Step("Проверяем, что переход к разделу Булки осуществлен")
+    public boolean isBunDisplayed() {
+        return activeBunSection.exists();
     }
 
-    @Step("Проверяем, что соус 'SpicyX' отображается")
-    public boolean checkSpicyX() {
-        return spicyX.isDisplayed();
+    @Step("Проверяем, что переход к разделу Соусы осуществлен")
+    public boolean isSaucesDisplayed() {
+        return activeSaucesSection.exists();
     }
 
-    @Step("Проверяем, что начинка 'Мясо бессмертных моллюсков Protostomia' отображается")
-    public boolean checkProtostomiaMeat() {
-        protostomiaMeat.shouldBe(visible);
-        return true;
+    @Step("Проверяем, что переход к разделу Начинки осуществлен")
+    public boolean isFillingsDisplayed() {
+        return activeFillingsSection.exists();
     }
 
     @Step("Проверяем, что кнопка 'Оформить заказ'отображается")
